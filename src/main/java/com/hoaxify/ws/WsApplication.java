@@ -1,3 +1,4 @@
+
 package com.hoaxify.ws;
 
 import org.springframework.boot.SpringApplication;
