@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 //@CrossOrigin//bu notasyon sunucu ve clientin farklı portlarda çalışmasına rağmen haberleşmesini sağladı
 public class UserController {
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
     @PostMapping("/api/1.0/users")
     public void createUser(@RequestBody User  user){
-       userRepository.save(user);
+       userService.cretaUser(user);
     }
 }
