@@ -15,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 // Jackson library sayesinde client tarafından gelen Json Objesi(Key,Value) ilgili sınıfın key eşitlemesi sonrası Value setlemei işlemini yapar .
 // Yani bizim cliient tarafından gönderdiğimiz Obje böylelikle User tipine cast edilmiş olur.
 @RestController
-@CrossOrigin//bu notasyon sunucu ve clientin farklı portlarda çalışmasına rağmen haberleşmesini sağladı
+//Client tarafında proxy ayarı yaptığımızdan @CrossOrigin notasyonuna gerek kalmadı
+//@CrossOrigin//bu notasyon sunucu ve clientin farklı portlarda çalışmasına rağmen haberleşmesini sağladı
 public class UserController {
     private final static Logger log= LoggerFactory.getLogger(UserController.class);
     @PostMapping("/api/1.0/users")
