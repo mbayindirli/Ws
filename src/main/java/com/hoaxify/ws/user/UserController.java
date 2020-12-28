@@ -2,8 +2,7 @@ package com.hoaxify.ws.user;
 
 
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.hoaxify.ws.shared.GenericResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +23,9 @@ public class UserController {
     private UserService userService;
     @PostMapping("/api/1.0/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@RequestBody User  user){
+    public GenericResponse createUser(@RequestBody User  user){
        userService.cretaUser(user);
+        GenericResponse response=new GenericResponse("created User");
+        return response;
     }
 }
