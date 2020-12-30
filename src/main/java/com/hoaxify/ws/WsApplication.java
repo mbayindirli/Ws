@@ -3,8 +3,9 @@ package com.hoaxify.ws;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-@SpringBootApplication
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+//exclude ile SecurityAutoConfiguration sınıfımnı şimdilik hariç tuttuk
+@SpringBootApplication(exclude = SecurityAutoConfiguration.class)
 public class WsApplication {
 
 	public static void main(String[] args) {
