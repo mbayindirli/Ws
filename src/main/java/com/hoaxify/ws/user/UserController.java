@@ -5,11 +5,9 @@ import com.hoaxify.ws.error.ApiError;
 import com.hoaxify.ws.shared.GenericResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -29,25 +27,38 @@ public class UserController {
     private UserService userService;
     @PostMapping("/api/1.0/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> createUser( @Valid @RequestBody  User  user){
-        String userName=user.getUserName();
-        String displayName=user.getDisplayName();
-        ApiError apiError=new ApiError(400,"Validation Error","/api/1.0/users");
-        Map<String,String> validError=new HashMap<>();
-        if(userName==null||userName.isEmpty()){
-            validError.put("userName","Username not be null");
-            apiError.setValidationError(validError);
-        }
-
-        if(displayName==null||displayName.isEmpty()){
-            validError.put("displayName","displayName not be null");
-            apiError.setValidationError(validError);
-        }
-        if (validError.size()>0){
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiError);
-        }
+    public GenericResponse createUser( @Valid @RequestBody  User  user){
+//        String userName=user.getUserName();
+//        String displayName=user.getDisplayName();
+//        ApiError apiError=new ApiError(400,"Validation Error","/api/1.0/users");
+//        Map<String,String> validError=new HashMap<>();
+//        if(userName==null||userName.isEmpty()){
+//            validError.put("userName","Username not be null");
+//            apiError.setValidationError(validError);
+//        }
+//
+//        if(displayName==null||displayName.isEmpty()){
+//            validError.put("displayName","displayName not be null");
+//            apiError.setValidationError(validError);
+//        }
+//        if (validError.size()>0){
+//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiError);
+//        }
        userService.cretaUser(user);
        // GenericResponse response=new GenericResponse("created User");
-        return ResponseEntity.ok(new GenericResponse("created User"));
+        return new GenericResponse("created User");
     }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ApiError handleValidationException(MethodArgumentNotValidException exception){
+        ApiError apiError=new ApiError(400,"Validation Error","/api/1.0/users");
+        Map<String,String> validationError=new HashMap<>();
+        for (FieldError fieldError:exception.getBindingResult().getFieldErrors()) {
+        validationError.put(fieldError.getField(),fieldError.getDefaultMessage());
+        }
+        apiError.setValidationError(validationError);
+        return apiError;
+   }
+
 }
