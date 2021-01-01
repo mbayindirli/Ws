@@ -1,7 +1,6 @@
 package com.hoaxify.ws.user;
 
 
-
 import com.hoaxify.ws.error.ApiError;
 import com.hoaxify.ws.shared.GenericResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
+
+
 
 
 //create işlemii genellikle post metotla oluşturulur
@@ -27,7 +29,7 @@ public class UserController {
     private UserService userService;
     @PostMapping("/api/1.0/users")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<?> createUser(@RequestBody User  user){
+    public ResponseEntity<?> createUser( @Valid @RequestBody  User  user){
         String userName=user.getUserName();
         String displayName=user.getDisplayName();
         ApiError apiError=new ApiError(400,"Validation Error","/api/1.0/users");

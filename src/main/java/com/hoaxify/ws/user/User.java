@@ -1,5 +1,6 @@
 package com.hoaxify.ws.user;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -14,9 +15,14 @@ public class User {
     @Id
     @GeneratedValue
     private Long id;
+    
+    @NotNull
     private String userName;
+
+    @NotNull
     private String displayName;
     private String password;
+
 
     public String getUserName() {
         return userName;
