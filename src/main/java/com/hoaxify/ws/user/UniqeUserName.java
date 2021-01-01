@@ -10,7 +10,7 @@ import java.lang.annotation.*;
         validatedBy = {UniqeUserNameValidator.class}
 )
 public @interface UniqeUserName {
-    String message() default "Username must be uniqe";//zorunlu
+    String message() default "{username.must.be.uniqe.message}";//zorunlu
 
     Class<?>[] groups() default {};//zorunlu
 

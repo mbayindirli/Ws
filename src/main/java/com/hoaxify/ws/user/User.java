@@ -20,7 +20,7 @@ public class User {
     @GeneratedValue
     private Long id;
     
-    @NotNull
+    @NotNull(message = "{username.be.not.message}")
     @UniqeUserName
     @Size(min = 3,max = 255)
     @Column(unique = true)
@@ -31,7 +31,7 @@ public class User {
     private String displayName;
 
     @NotNull
-    @Pattern(regexp = "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$", flags = Pattern.Flag.UNICODE_CASE)
+    @Pattern(regexp = "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$",message = "{password.pattern.message}",flags = Pattern.Flag.UNICODE_CASE)
     @Size(min = 8,max = 255)
     private String password;
 
