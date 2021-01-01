@@ -21,6 +21,7 @@ public class User {
     private Long id;
     
     @NotNull
+    @UniqeUserName
     @Size(min = 3,max = 255)
     @Column(unique = true)
     private String userName;
