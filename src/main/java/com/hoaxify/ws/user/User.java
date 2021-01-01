@@ -1,11 +1,12 @@
 package com.hoaxify.ws.user;
 
-import com.sun.istack.NotNull;
+
 import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Data
 @Entity
