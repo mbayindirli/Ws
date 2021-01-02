@@ -1,11 +1,13 @@
 package com.hoaxify.ws.error;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.util.Date;
 import java.util.Map;
 
 @Data
+@JsonInclude(JsonInclude.Include.NON_NULL)//Jackson tarafından null olanları hariç tutarak json oluşturma
 public class ApiError {
     private int status;
     private String message;
