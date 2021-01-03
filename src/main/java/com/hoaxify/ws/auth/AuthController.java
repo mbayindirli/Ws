@@ -49,7 +49,12 @@ public class AuthController {
        }
 
 
-
-        return ResponseEntity.ok().build();
+//username,displayname,image 1 yontem
+//        HashMap<String,String> response=new HashMap<>();
+//       response.put("userName",inDb.getUserName());
+//       response.put("displayName",inDb.getDisplayName());
+//       response.put("image",inDb.getImage());
+        //2 yontem direk User doneriz JsonIgnore ile de Password gelmemesini sağlarız
+        return ResponseEntity.ok().body(inDb);
     }
 }

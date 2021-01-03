@@ -1,6 +1,7 @@
 package com.hoaxify.ws.user;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -31,9 +32,12 @@ public class User {
     private String displayName;
 
     @NotNull
+    @JsonIgnore//json olustururken bu değeri ignore et
     @Pattern(regexp = "^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{8,}$",message = "{password.pattern.message}",flags = Pattern.Flag.UNICODE_CASE)
     @Size(min = 8,max = 255)
     private String password;
+
+    private String image;
 
 
     public String getUserName() {
@@ -58,5 +62,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
