@@ -11,7 +11,7 @@ public class UserService {
     PasswordEncoder passwordEncoder;
     UserRepository userRepository;
     @Autowired//constructor ile dependancy injection yapmak buada injection yapılan class bir tane olduğundan @Autowired zorunl değil dazha fazla olsaydı zorunlu olurdu
-    public UserService(UserRepository userRepository) {
+    public UserService(UserRepository userRepository,PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.passwordEncoder=new BCryptPasswordEncoder();
     }

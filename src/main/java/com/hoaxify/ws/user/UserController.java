@@ -44,7 +44,7 @@ public class UserController {
 //        if (validError.size()>0){
 //            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(apiError);
 //        }
-       userService.cretaUser(user);
+          userService.cretaUser(user);
        // GenericResponse response=new GenericResponse("created User");
         return new GenericResponse("created User");
     }

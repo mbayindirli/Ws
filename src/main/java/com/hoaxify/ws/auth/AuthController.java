@@ -37,7 +37,7 @@ public class AuthController {
         logger.info(decoded);
         String userName=decoded.split(":")[0];
         String password=decoded.split(":")[1];
-       User inDb=  userRepository.findByUserName(userName);
+       User inDb=  userRepository.findByUsername(userName);
        if(inDb==null){
            ApiError apiError=new ApiError(401,"User Bulunamadı","api/1.0/auth");
            return  ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(apiError);

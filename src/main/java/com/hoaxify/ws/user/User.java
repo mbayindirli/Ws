@@ -25,7 +25,7 @@ public class User {
     @UniqeUserName
     @Size(min = 3,max = 255)
     @Column(unique = true)
-    private String userName;
+    private String username;
 
     @NotNull
     @Size(min = 3,max = 255)
@@ -40,12 +40,12 @@ public class User {
     private String image;
 
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getDisplayName() {
